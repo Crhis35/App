@@ -1,0 +1,44 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/Anadir_un_contacto" method='POST'>
+    <input type="text" name ="nombrecompleto" placeholder="Nombrecompleto">
+    <input type="text" name="phone" placeholder="Telefono">
+    <input type="text" name="ciudad" placeholder="Ciudad">
+    <input type="text" name="email" placeholder="Email">
+    <button type="submit">
+        Guardar
+
+    </button>
+    
+</form>
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Nombre completo</td>
+            <td>Telefono</td>
+            <td>Ciudad</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contactos in contacto %}
+        <tr>
+            <td>{{ contactos.0 }}</td>
+            <td>{{ contactos.1 }}</td>
+            <td>{{ contactos.2 }}</td>
+            <td>{{ contactos.3 }}</td>
+            <td>{{ contactos.4 }}</td>
+            <td>
+                <a href="/editar{{contactos.0}}">Editar</a>
+                <a href="/eliminar/{{contactos.0}}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
